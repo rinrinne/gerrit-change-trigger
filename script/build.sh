@@ -5,6 +5,9 @@ TYPE=$1
 VERSION=$2
 
 if [ "$TYPE" = "BUCK" ]; then
+  # Gerrit 
+  git clone https://gerrit.googlesource.com/gerrit 
+
   # Checkout tag
   if [ "$VERSION" != "HEAD" ]; then
     cd gerrit
