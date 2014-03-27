@@ -56,6 +56,20 @@ limitations under the License.
         <version>2.4</version>
         <configuration>
           <forceCreation>true</forceCreation>
+          <archive>
+            <manifestEntries>
+              <Gerrit-PluginName>${project.artifactId}</Gerrit-PluginName>
+              <Gerrit-Module>com.googlesource.gerrit.plugins.raisepatch.Module</Gerrit-Module>
+              <Gerrit-HttpModule>com.googlesource.gerrit.plugins.raisepatch.HttpModule</Gerrit-HttpModule>
+              <Gerrit-ApiType>${Gerrit-ApiType}</Gerrit-ApiType>
+              <Gerrit-ApiVersion>${Gerrit-ApiVersion}</Gerrit-ApiVersion>
+
+              <Implementation-Vendor>Gerrit Code Review</Implementation-Vendor>
+              <Implementation-URL>http://code.google.com/p/gerrit/</Implementation-URL>
+              <Implementation-Title>${Gerrit-ApiType} ${project.artifactId}</Implementation-Title>
+              <Implementation-Version>${project.version}</Implementation-Version>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
 
@@ -74,41 +88,6 @@ limitations under the License.
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.4.2</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.2</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <finalName>${project.artifactId}-${project.version}-${Gerrit-ApiVersion}</finalName>
-              <transformers>
-                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <manifestEntries>
-                    <Gerrit-PluginName>${project.artifactId}</Gerrit-PluginName>
-                    <Gerrit-Module>com.googlesource.gerrit.plugins.raisepatch.Module</Gerrit-Module>
-
-                    <Implementation-Vendor>Gerrit Code Review</Implementation-Vendor>
-                    <Implementation-URL>http://code.google.com/p/gerrit/</Implementation-URL>
-
-                    <Implementation-Title>${Gerrit-ApiType} ${project.artifactId}</Implementation-Title>
-                    <Implementation-Version>${project.version}</Implementation-Version>
-
-                    <Gerrit-ApiType>${Gerrit-ApiType}</Gerrit-ApiType>
-                    <Gerrit-ApiVersion>${Gerrit-ApiVersion}</Gerrit-ApiVersion>
-                  </manifestEntries>
-                </transformer>
-              </transformers>
-              <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
 
     </plugins>
