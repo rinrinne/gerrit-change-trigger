@@ -9,7 +9,7 @@ gerrit-raise-patch: Gerrit Raise Patchset plugin
 Synopsis
 ----------------------
 
-This is Gerrit plugin.
+This is a Gerrit plugin.
 
 This can raise `patchset-created` event to gerrit event stream.
 `Raise Event` button is added to revision view.
