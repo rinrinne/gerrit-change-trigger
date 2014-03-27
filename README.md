@@ -12,7 +12,7 @@ Synopsis
 This is Gerrit plugin.
 
 This can raise `patchset-created` event to gerrit event stream.
-`Raise Event' button is added to revision view.
+`Raise Event` button is added to revision view.
 
 This plugin works on Gerrit 2.8 or later.
 
