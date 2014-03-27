@@ -3,14 +3,18 @@ jdk:
   - oraclejdk7
   - openjdk7
 env:
-  matrix:
-    - API_VERSION=2.8
-    - API_VERSION=2.8.1
-    - API_VERSION=2.8.2
-    - API_VERSION=2.8.3
+  - TYPE=MAVEN API_VERSION=2.8
+  - TYPE=MAVEN API_VERSION=2.8.1
+  - TYPE=MAVEN API_VERSION=2.8.2
+  - TYPE=MAVEN API_VERSION=2.8.3
+  - TYPE=MAVEN API_VERSION=HEAD
+  - TYPE=BUCK  API_VERSION=2.8
+  - TYPE=BUCK  API_VERSION=2.8.1
+  - TYPE=BUCK  API_VERSION=2.8.2
+  - TYPE=BUCK  API_VERSION=2.8.3
+  - TYPE=BUCK  API_VERSION=HEAD
 
 before_script: ./script/before_build.sh
 
 script:
-  - mvn package -DGerrit-ApiVersion=$API_VERSION
-  - ./script/build.sh $API_VERSION
+  - ./script/build.sh $TYPE $API_VERSION

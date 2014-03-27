@@ -1,16 +1,25 @@
 #!/bin/bash
 
 ROOT=${PWD}
-VERSION=$1
+TYPE=$1
+VERSION=$2
 
-# Checkout tag
-cd gerrit
-git checkout -b ${VERSION} refs/tags/v${VERSION}
-cd ..
+if [ "$TYPE" = "BUCK" ]; then
+  # Checkout tag
+  if [ "$VERSION" != "HEAD" ]; then
+    cd gerrit
+    git checkout -b ${VERSION} refs/tags/v${VERSION}
+    cd ..
+  fi
 
-# Add Symbolic link
-ln -fns ${ROOT} gerrit/plugins/raise-patch
+  # Add Symbolic link
+  ln -fns ${ROOT} gerrit/plugins/raise-patch
 
-# Build
-cd gerrit
-${ROOT}/buck/bin/buck build plugins/raise-patch:raise-patch
+  # Build
+  cd gerrit
+  ${ROOT}/buck/bin/buck build plugins/raise-patch:raise-patch
+else
+  if [ "$VERSION" != "HEAD" ]; then
+    mvn package -DGerrit-ApiVersion=$VERSION
+  fi
+fi
