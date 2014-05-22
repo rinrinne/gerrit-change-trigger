@@ -1,5 +1,3 @@
-include_defs('//lib/maven.defs')
-
 gerrit_plugin(
   name = 'raise-patch',
   srcs = glob(['src/main/java/**/*.java']),
