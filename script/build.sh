@@ -23,6 +23,6 @@ if [ "$TYPE" = "BUCK" ]; then
   ${ROOT}/buck/bin/buck build plugins/raise-patch:raise-patch
 else
   if [ "$VERSION" != "HEAD" ]; then
-    mvn package -DGerrit-ApiVersion=$VERSION
+    ./gradlew build -PapiVersion=$VERSION
   fi
 fi

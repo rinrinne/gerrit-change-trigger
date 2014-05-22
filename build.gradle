@@ -1,0 +1,45 @@
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.12'
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+group = 'com.googlesource.gerrit.plugins.raisepatch'
+version = "1.1-SNAPSHOT-${apiVersion}"
+
+jar {
+  manifest {
+    attributes(
+      'Gerrit-PluginName': name, 
+      'Gerrit-ApiType': apiType,
+      'Gerrit-ApiVersion': apiVersion,
+      'Gerrit-Module': 'com.googlesource.gerrit.plugins.raisepatch.Module',
+      'Implementation-Vendor': 'Gerrit Code Review',
+      'Implementation-URL': 'http://code.google.com/p/gerrit/',
+      'Implementation-Title': "${apiType} ${name}",
+      'Implementation-Version' : version,
+      'Created-By': 'rinrinne (rinrin.ne@gmail.com)'
+    )
+  } 
+}
+
+repositories {
+  mavenCentral()
+  maven {
+    name = "Gerrit API repository"
+    url = "https://gerrit-api.storage.googleapis.com/"
+    artifactUrls = [
+      "https://gerrit-api.storage.googleapis.com/release/",
+      "https://gerrit-api.storage.googleapis.com/snapshot/",
+    ]
+  }
+}
+
+dependencies {
+  compile(
+    [group: 'com.google.gerrit', name: "gerrit-${apiType}-api", version: apiVersion],
+  )
+}
