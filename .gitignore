@@ -1,5 +1,7 @@
 /work
 /build
+/target
+/bin
 /.gradle
 /.classpath
 /.checkstyle
