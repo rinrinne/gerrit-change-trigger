@@ -12,6 +12,7 @@ group = 'com.googlesource.gerrit.plugins.raisepatch'
 version = "1.2-SNAPSHOT"
 
 jar {
+  classifier = apiVersion
   manifest {
     attributes(
       'Gerrit-PluginName': name, 
