@@ -3,6 +3,7 @@ gerrit-raise-patch: Gerrit Raise Patchset plugin
 
 * Author: rinrinne a.k.a. rin_ne
 * Repository: http://github.com/rinrinne/gerrit-raise-patch
+* Release: http://github.com/rinrinne/gerrit-raise-patch/releases
 
 [![Build Status](https://travis-ci.org/rinrinne/gerrit-raise-patch.png?branch=master)](https://travis-ci.org/rinrinne/gerrit-raise-patch)
 
