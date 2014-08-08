@@ -3,26 +3,15 @@ jdk:
   - oraclejdk7
   - openjdk7
 env:
-  - TYPE=MAVEN API_VERSION=2.8
-  - TYPE=MAVEN API_VERSION=2.8.1
-  - TYPE=MAVEN API_VERSION=2.8.2
-  - TYPE=MAVEN API_VERSION=2.8.3
-  - TYPE=MAVEN API_VERSION=2.8.4
-  - TYPE=MAVEN API_VERSION=2.8.5
-  - TYPE=MAVEN API_VERSION=2.9
-  - TYPE=MAVEN API_VERSION=HEAD
-  - TYPE=BUCK  API_VERSION=2.8
-  - TYPE=BUCK  API_VERSION=2.8.1
-  - TYPE=BUCK  API_VERSION=2.8.2
-  - TYPE=BUCK  API_VERSION=2.8.3
-  - TYPE=BUCK  API_VERSION=2.8.4
-  - TYPE=BUCK  API_VERSION=2.8.5
-  - TYPE=BUCK  API_VERSION=2.9
-  - TYPE=BUCK  API_VERSION=HEAD
+  matrix:
+    - API_VERSION=2.8
+    - API_VERSION=2.8.1
+    - API_VERSION=2.8.2
+    - API_VERSION=2.8.3
+    - API_VERSION=2.8.4
+    - API_VERSION=2.8.5
+    - API_VERSION=2.9
 
 install: true
 
-before_script: ./script/before_build.sh
-
-script:
-  - ./script/build.sh $TYPE $API_VERSION
+script: ./gradlew build -PapiVersion=$API_VERSION
