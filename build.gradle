@@ -15,13 +15,13 @@ jar {
   classifier = apiVersion
   manifest {
     attributes(
-      'Gerrit-PluginName': name, 
+      'Gerrit-PluginName': project.name, 
       'Gerrit-ApiType': apiType,
       'Gerrit-ApiVersion': apiVersion,
       'Gerrit-Module': 'com.googlesource.gerrit.plugins.raisepatch.Module',
       'Implementation-Vendor': 'rinrinne',
       'Implementation-URL': 'https://github.com/rinrinne/gerrit-raise-patch',
-      'Implementation-Title': "${apiType} ${name}",
+      'Implementation-Title': "${apiType} ${project.name}",
       'Implementation-Version' : version,
       'Created-By': 'rinrinne (rinrin.ne@gmail.com)'
     )
