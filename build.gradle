@@ -10,7 +10,7 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 group = 'com.googlesource.gerrit.plugins.changetrigger'
-version = "1.2-SNAPSHOT"
+version = "2.0"
 
 jar {
   classifier = apiVersion
