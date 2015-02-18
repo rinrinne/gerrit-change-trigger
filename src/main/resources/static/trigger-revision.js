@@ -12,20 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.raisepatch;
-
-import static com.google.gerrit.server.change.RevisionResource.REVISION_KIND;
-import com.google.gerrit.extensions.restapi.RestApiModule;
-import com.google.inject.AbstractModule;
-
-class Module extends AbstractModule {
-  @Override
-  protected void configure() {
-    install(new RestApiModule() {
-      @Override
-      protected void configure() {
-        get(REVISION_KIND, "raise-event-revision").to(RaisePatchSetAction.class);
-      }
-    });
+Gerrit.install(function(self) {
+  function onTriggerRevision(c) {
+    var y = c.button('Yes', {onclick: function(){
+      c.get(
+          function(r) {
+            c.hide();
+          });
+    }});
+    var n = c.button('No', {onclick: function(){
+      c.hide();
+    }});
+    c.popup(c.div(c.msg('Trigger patchset-created event?'),
+        c.br(),
+        y, n));
+    n.focus();
   }
-}
+  self.onAction('revision', 'trigger-revision', onTriggerRevision);
+});

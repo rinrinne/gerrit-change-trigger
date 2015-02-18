@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.raisepatch;
+package com.googlesource.gerrit.plugins.changetrigger;
 
 import com.google.gerrit.common.ChangeHooks;
 import com.google.gerrit.extensions.restapi.AuthException;
@@ -29,14 +29,14 @@ import com.google.gerrit.server.events.EventFactory;
 import com.google.gerrit.server.events.PatchSetCreatedEvent;
 import com.google.inject.Inject;
 
-public class RaisePatchSetAction implements UiAction<RevisionResource>, RestReadView<RevisionResource> {
+public class ChangeTriggerAction implements UiAction<RevisionResource>, RestReadView<RevisionResource> {
 
   private final ChangeHooks changeHooks;
   private final EventFactory eventFactory;
   private final ReviewDb reviewDb;
 
   @Inject
-  public RaisePatchSetAction(ChangeHooks changeHooks, EventFactory eventFactory, ReviewDb reviewDb) {
+  public ChangeTriggerAction(ChangeHooks changeHooks, EventFactory eventFactory, ReviewDb reviewDb) {
     this.changeHooks = changeHooks;
     this.eventFactory = eventFactory;
     this.reviewDb = reviewDb;
@@ -57,14 +57,14 @@ public class RaisePatchSetAction implements UiAction<RevisionResource>, RestRead
 
     changeHooks.postEvent(rrsc.getChange(), event, reviewDb);
 
-    return "Raised.";
+    return "Triggered.";
   }
 
   @Override
   public com.google.gerrit.extensions.webui.UiAction.Description getDescription(RevisionResource rrsc) {
     return new Description()
-    .setLabel("Raise Event")
-    .setTitle("Raise patchset-created event to event stream.");
+    .setLabel("Trigger")
+    .setTitle("Trigger patchset-created event to event stream.");
   }
 
 }

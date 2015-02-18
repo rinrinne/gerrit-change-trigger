@@ -1,19 +1,19 @@
-gerrit-raise-patch: Gerrit Raise Patchset plugin
+gerrit-change-trigger: Gerrit Change Trigger plugin
 ==================
 
 * Author: rinrinne a.k.a. rin_ne
-* Repository: http://github.com/rinrinne/gerrit-raise-patch
-* Release: http://github.com/rinrinne/gerrit-raise-patch/releases
+* Repository: http://github.com/rinrinne/gerrit-change-trigger
+* Release: http://github.com/rinrinne/gerrit-change-trigger/releases
 
-[![Build Status](https://travis-ci.org/rinrinne/gerrit-raise-patch.png?branch=master)](https://travis-ci.org/rinrinne/gerrit-raise-patch)
+[![Build Status](https://travis-ci.org/rinrinne/gerrit-change-trigger.png?branch=master)](https://travis-ci.org/rinrinne/gerrit-change-trigger)
 
 Synopsis
 ----------------------
 
 This is a Gerrit plugin.
 
-This can raise `patchset-created` event to gerrit event stream.
-`Raise Event` button is added to revision view.
+This can trigger `patchset-created` event for the latest patchset in a change to gerrit event stream.
+`Trigger` button is added to revision view.
 
 This plugin works on Gerrit 2.8 or later.
 
@@ -41,6 +41,9 @@ Now avaliable for Gerrit 2.9 by default. If you want to use it on another versio
 
 History
 ---------------------
+
+* 2.0
+  * Rename plugin name
 
 * 1.1
   * Add gradle support

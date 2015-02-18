@@ -12,18 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.raisepatch;
+package com.googlesource.gerrit.plugins.changetrigger;
 
-import com.google.gerrit.extensions.registration.DynamicSet;
-import com.google.gerrit.extensions.webui.JavaScriptPlugin;
-import com.google.gerrit.extensions.webui.WebUiPlugin;
-import com.google.gerrit.httpd.plugins.HttpPluginModule;
+import static com.google.gerrit.server.change.RevisionResource.REVISION_KIND;
+import com.google.gerrit.extensions.restapi.RestApiModule;
+import com.google.inject.AbstractModule;
 
-public class HttpModule extends HttpPluginModule {
-
+class Module extends AbstractModule {
   @Override
-  protected void configureServlets() {
-    DynamicSet.bind(binder(), WebUiPlugin.class)
-      .toInstance(new JavaScriptPlugin("raise-revision.js"));
+  protected void configure() {
+    install(new RestApiModule() {
+      @Override
+      protected void configure() {
+        get(REVISION_KIND, "trigger-revision").to(ChangeTriggerAction.class);
+      }
+    });
   }
 }

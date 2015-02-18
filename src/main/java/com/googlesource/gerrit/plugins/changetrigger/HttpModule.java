@@ -12,21 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-Gerrit.install(function(self) {
-  function onRaiseEventRevision(c) {
-    var y = c.button('Yes', {onclick: function(){
-      c.get(
-          function(r) {
-            c.hide();
-          });
-    }});
-    var n = c.button('No', {onclick: function(){
-      c.hide();
-    }});
-    c.popup(c.div(c.msg('Are you sure?'),
-        c.br(),
-        y, n));
-    n.focus();
+package com.googlesource.gerrit.plugins.changetrigger;
+
+import com.google.gerrit.extensions.registration.DynamicSet;
+import com.google.gerrit.extensions.webui.JavaScriptPlugin;
+import com.google.gerrit.extensions.webui.WebUiPlugin;
+import com.google.gerrit.httpd.plugins.HttpPluginModule;
+
+public class HttpModule extends HttpPluginModule {
+
+  @Override
+  protected void configureServlets() {
+    DynamicSet.bind(binder(), WebUiPlugin.class)
+      .toInstance(new JavaScriptPlugin("trigger-revision.js"));
   }
-  self.onAction('revision', 'raise-event-revision', onRaiseEventRevision);
-});
+}
